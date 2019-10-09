@@ -1,0 +1,11 @@
+<p> Выберите группу вопросов для прохождения тестирования</p>
+
+{% if group_list %}
+    <ul>
+    {% for group in group_list %}
+        <li><a href="/test_form/group/{{ group.id }}/">{{ group.group_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No groups are available.</p>
+{% endif %}
