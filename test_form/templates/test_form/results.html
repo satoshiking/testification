@@ -1,3 +1,5 @@
+<h3> REULTS PAGE </h3>
+
 {% if question_list %}
     <ul>
     {% for question in question_list %}
@@ -7,3 +9,5 @@
 {% else %}
     <p>No questions are available.</p>
 {% endif %}
+
+<a href="{% url 'test_form:index' %}">Перейти на главную</a>

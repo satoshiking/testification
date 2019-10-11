@@ -1,9 +1,9 @@
-<p> Выберите группу вопросов для прохождения тестирования</p>
+<h3> Для прохождения тестов по заданной категории перейдите по нужной ссылке</h3>
 
 {% if group_list %}
     <ul>
     {% for group in group_list %}
-        <li><a href="/test_form/group/{{ group.id }}/">{{ group.group_text }}</a></li>
+        <li><a href="/test_form/{{ question_id_list.id }}/">{{ group.group_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

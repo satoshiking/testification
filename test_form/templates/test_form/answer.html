@@ -8,23 +8,23 @@
     
     <p> <b>{{question.question_text}} </b></p>
 
+    {% comment %}
+    <p> {% url 'test_form:answer' group_id question.id %} </p>
+    {% endcomment %} 
 
-   {% comment %}
-    <form action="{% url 'test_form:question' question.id %}" method="post">
+    <form action="{% url 'test_form:answer' question.id %}" method="post">
+
     {% csrf_token %}
     {% for choice in choice_list %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
         <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
     {% endfor %}
     <input type="submit" value="Next">
     </form>
-    {% endcomment %}  
-
+   
 
     
-    {% for choice in choice_list %}
-        <p> {{choice.choice_text}}</p>
-    {% endfor %}
+
     
     </ul>
 {% else %}
@@ -33,10 +33,3 @@
 
 
 
-
-
-
-
-
-
-Ссылка на следующий вопрос
