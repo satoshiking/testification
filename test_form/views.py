@@ -2,10 +2,14 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.template import loader
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Group, Choice
 
+
 # Вывод список доступных групп
+@login_required
 def index(request):
     group_list = Group.objects.all()
 
@@ -26,6 +30,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 # Вывод 1 вопроса
+@login_required
 def detail(request, question_id):
     question = Question.objects.get(pk=question_id)
     choice_list = Choice.objects.filter(question_id=question.id)
@@ -38,6 +43,7 @@ def detail(request, question_id):
 
 
 # Запись ответа из формы в базу
+@login_required
 def answer(request, question_id):
 
     # Сохранить ответ пользователя в базу.
@@ -59,7 +65,7 @@ def answer(request, question_id):
 
 
 
-
+@login_required
 def results(request, group_id):
     #return HttpResponse("RESULTS PAGE")
 
@@ -73,3 +79,22 @@ def results(request, group_id):
     }
     return HttpResponse(template.render(context, request))
     
+
+@login_required
+def authtest(request):
+    result = "AUTH SUCCESS", "request.user=", request.user.id
+    return HttpResponse(result)
+
+"""    
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        return HttpResponse("success AUTH")
+    else:
+        # Return an 'invalid login' error message.
+        return HttpResponse("AUTH TEST PAGE")
+    
+
+"""

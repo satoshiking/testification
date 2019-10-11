@@ -1,13 +1,19 @@
-<h3> REULTS PAGE </h3>
+{% extends "base_generic.html" %}
 
-{% if question_list %}
-    <ul>
-    {% for question in question_list %}
-        <li><a href="/test_form/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No questions are available.</p>
-{% endif %}
 
-<a href="{% url 'test_form:index' %}">Перейти на главную</a>
+{% block content %}
+    <h3> Ваши результаты по пройденной теме: </h3>
+    {% if question_list %}
+        <ul>
+        {% for question in question_list %}
+            <li><a href="/test_form/{{ question.id }}/">{{ question.question_text }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No questions are available.</p>
+    {% endif %}
+    <a href="{% url 'test_form:index' %}">Перейти на главную</a>
+
+{% endblock %}
+
+
