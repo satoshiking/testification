@@ -1,11 +1,17 @@
-<h3> Для прохождения тестов по заданной категории перейдите по нужной ссылке</h3>
+{% extends "base_generic.html" %}
 
-{% if group_list %}
-    <ul>
-    {% for group in group_list %}
-        <li><a href="/test_form/{{ question_id_list.id }}/">{{ group.group_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No groups are available.</p>
-{% endif %}
+
+
+{% block content %}
+	<h3> Для прохождения тестов по заданной категории перейдите по нужной ссылке</h3>
+
+	{% if question_list %}
+    	<ul>
+	    {% for question in question_list %}
+    	    <li><a href="/test_form/{{ question.1 }}/">{{ question.0 }}</a></li>
+	    {% endfor %}
+    	</ul>
+	{% else %}
+    	<p>No groups are available.</p>
+	{% endif %}
+{% endblock %}
