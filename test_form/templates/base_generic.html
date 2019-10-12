@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   {% block title %}
-  <title>TESTIFICATION</title>
+  <title>Тестирование</title>
   {% endblock %}
 </head>
 
@@ -19,5 +19,7 @@
     {% endblock %}
           
      {% block content %}{% endblock %}
+     <hr>
+     <a href="{% url 'test_form:index' %}">Перейти на главную</a>
 </body>
 </html>
