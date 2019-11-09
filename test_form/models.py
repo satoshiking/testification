@@ -32,4 +32,4 @@ class User_choice(models.Model):
     checked = models.BooleanField()
 
     def __str__(self):
-        return self.user
+        return self.get_username()

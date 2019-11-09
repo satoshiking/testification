@@ -1,9 +1,10 @@
 from django.contrib import admin
-
 from .models import Question, Choice, Group
+
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
+
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
@@ -12,11 +13,6 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline, ]
 
 
-#@admin.register(Choice)
-#class ChoiceAdmin(admin.ModelAdmin):
-#	list_display = ('choice_text', 'question', 'right')
-#	list_filter = ('question', 'right')
-
 @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
-	pass
+    pass

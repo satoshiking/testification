@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.template import loader
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-
 from .models import Question, Group, Choice, User_choice
 
 
@@ -50,7 +49,8 @@ def answer(request, question_id):
             checked = True
         else:
             checked = False
-        record = User_choice.objects.update_or_create(user=request.user, choice=choice, defaults={'checked': checked})
+        record = User_choice.objects.update_or_create(
+            user=request.user, choice=choice, defaults={'checked': checked})
 
     # Определяем слеюующую страницу
     question = get_object_or_404(Question, pk=question_id)
@@ -60,11 +60,13 @@ def answer(request, question_id):
 
     # Закончились вопросы в группе -> к результатам
     if (len(question_list) == 0):
-        return HttpResponseRedirect(reverse('test_form:results', args=(group.id,)))
+        return HttpResponseRedirect(reverse('test_form:results',
+                                            args=(group.id,)))
     # Иначе смотрим следующий вопрос
     else:
         question_next = question_list[0]
-        return HttpResponseRedirect(reverse('test_form:detail', args=(question_next.id,)))
+        return HttpResponseRedirect(reverse('test_form:detail',
+                                            args=(question_next.id,)))
 
 
 # Выводим результаты тестирования
